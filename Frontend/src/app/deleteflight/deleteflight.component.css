@@ -1,0 +1,16 @@
+form {
+    width: 40%;
+    border: .1em solid var(--border);
+    border-radius: 2em;
+    margin: 1% ;
+    position: relative;
+}
+.heading{
+    padding:3%;
+}
+a{
+    text-decoration: none;
+}
+.buttons{
+    margin-left: 2%;
+}

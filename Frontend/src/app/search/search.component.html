@@ -1,0 +1,95 @@
+<body>
+<div class="main">   
+        <mat-toolbar color="primary">
+            <div> 
+                Flight Ticket Searching
+            </div>
+        </mat-toolbar>
+<div *ngIf ="display; then thenblock; else elseblock"></div>
+<ng-template #thenblock>
+    <div class="division1">
+        <form #userForm="ngForm"  (ngSubmit)="onsubmit()" >
+            <div class= "form-group" >
+                 <label for="from">Departure </label><br>
+                 <input type="text" required #name="ngModel" [(ngModel)]="flightModel.departure" id="from" name="from"  [class.is-invalid]="name.invalid && name.touched"  pattern="[a-zA-Z ]*"  class="form-control"><br>
+                <div *ngIf="name.errors && (name.invalid || name.touched)">
+                    <small class="text-danger" *ngIf="name.errors['required']">Departure location is required</small>
+                    <small class="text-danger" *ngIf="name.errors['pattern']">Enter valid location</small>
+                </div>   
+            </div>
+
+            <div class= "form-group">
+                  <label for="to">Destination </label><br>
+                 <input  type="text" required #location="ngModel" id="to" name="to" [(ngModel)]="flightModel.destination" pattern="[a-zA-Z ]*" class="form-control"><br>
+             <div *ngIf="location.errors && (location.invalid || location.touched)">
+                 <small class="text-danger" *ngIf="location.errors['required']">Destionation location is required</small>
+                <small class="text-danger" *ngIf="location.errors['pattern']">Enter valid location </small>
+             </div>
+            </div> 
+
+            <div class= "form-group">
+                <label for="date">Date </label><br>
+                <input  type="text" required #date="ngModel" id="date" name="date" [(ngModel)]="flightModel.date" pattern="^(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])-[0-9]{4}$" class="form-control"><br>
+                <div *ngIf="date.errors && (date.invalid || date.touched)">
+                <small class="text-danger" *ngIf="date.errors['required']">Date is required</small>
+                <small class="text-danger" *ngIf="date.errors['pattern']">Enter valid date</small>
+                </div>
+            </div> 
+
+            <br>
+            <div >
+                 <button  mat-stroked-button [disabled] ="userForm.form.invalid" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+</div>
+
+
+<ng-template #elseblock>
+
+<div *ngIf ="flight===null; then notavaliable; else elseblock2"></div>
+
+<ng-template #elseblock2>
+    <form #addnew="ngForm" >
+    <div class="last" >
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th> FlightID</th>
+            <th> Departure</th>
+            <th> Destination</th>
+            <th> Date</th>
+            <th> Price</th>
+            <th></th>
+        </tr>
+        </thead>
+     
+        <tr *ngFor = "let f of flight">
+            <td>{{f.flightId}}</td>
+            <td>{{f.departure}}</td>
+            <td>{{f.destination}}</td>
+            <td>{{f.date}}</td>
+            <td>{{f.price}}</td>
+            <div class="form-group">
+            <input #bookid ="ngModel" type="radio" id="html" name="flight" value="{{f.flightId}}" ngModel  (change)="handleChange(f.flightId)">
+            <label for="html">Book</label>
+            </div>
+           
+        </tr>
+     </table> 
+     
+    </div> 
+  </form>
+  <button class="button1" mat-stroked-button ><a  routerLink="/signup" routerLinkActive="Active" > Submit</a></button>
+</ng-template>
+         
+
+</ng-template>
+<ng-template #notavaliable>
+    
+    <p class="sorry"> Sorry!  No Flights are avaliable </p>
+
+</ng-template>
+
+</body>

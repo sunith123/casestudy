@@ -1,0 +1,26 @@
+<div>
+    <mat-toolbar color="primary" class="navbar">
+        <div> 
+           Seats Avaliable
+        </div>
+    </mat-toolbar>
+</div>
+<body>
+    <table class="styled-table">
+    <thead>
+        <tr>
+            <th >FlightID</th>
+            <th> Seats Available</th>
+
+        </tr>
+    </thead>
+        <tr *ngFor = "let f of Data">
+            <td>{{f.flightId}}</td>
+            <td>{{f.avaliable}}</td>
+        </tr>
+
+
+    </table> 
+    <button mat-stroked-button ><a  routerLink="/adminfunc" routerLinkActive="Active" >Back</a></button>
+
+</body>

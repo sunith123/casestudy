@@ -1,0 +1,83 @@
+
+    <mat-toolbar color="primary">
+        <div> 
+            Update booked seat
+        </div>
+    </mat-toolbar>
+    <div *ngIf ="display; then thenblock; else elseblock"></div>
+    <ng-template #thenblock>
+    <form #addnew="ngForm"  (ngSubmit)="update(addnew.value)" > 
+         
+
+        <div class="form-group">
+            <label for="flightId">FlightId</label>
+            <input type="text" required #idflight ="ngModel" id="flightId" name="flightId" [class.is-invalid]="idflight.invalid && idflight.touched"  pattern="^(0|[1-9][0-9]*)$"  class="form-control" ngModel={{Data.flightId}}><br>
+            <div *ngIf="idflight.errors && (idflight.invalid || idflight.touched)">
+                <small class="text-danger" *ngIf="idflight.errors['required']">FlightId  is required</small>
+                <small class="text-danger" *ngIf="idflight.errors['pattern']">Enter valid Id</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" required #name ="ngModel" id="name" name="name" [class.is-invalid]="name.invalid && name.touched"  pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"  class="form-control" ngModel={{Data.name}}><br>
+            <div *ngIf="name.errors && (name.invalid || name.touched)">
+                <small class="text-danger" *ngIf="name.errors['required']">Name required</small>
+                <small class="text-danger" *ngIf="name.errors['pattern']">Enter valid name</small>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="username">Userame</label>
+            <input type="text" required #username ="ngModel" id="username" name="username" [class.is-invalid]="username.invalid && username.touched" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  class="form-control" ngModel={{Data.username}}><br>
+            <div *ngIf="username.errors && (username.invalid || username.touched)">
+                <small class="text-danger" *ngIf="username.errors['required']">Userame required</small>
+                <small class="text-danger" *ngIf="username.errors['pattern']">Enter valid username</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" required #pass ="ngModel" id="password" name="password" [class.is-invalid]="pass.invalid && pass.touched"  pattern=""  class="form-control" ngModel={{Data.password}}><br>
+            <div *ngIf="pass.errors && (pass.invalid || pass.touched)">
+                <small class="text-danger" *ngIf="pass.errors['required']">Password is required</small>
+                <small class="text-danger" *ngIf="pass.errors['pattern']">Enter valid password</small>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="noOfPassengers">No of Passengers</label>
+            <input type="number" required #passengers ="ngModel" id="noOfPassengers" name="noOfPassengers" [class.is-invalid]="passengers.invalid && passengers.touched"  pattern=""  class="form-control" ngModel={{Data.noOfPassengers}}><br>
+            <div *ngIf="passengers.errors && (passengers.invalid || passengers.touched)">
+                <small class="text-danger" *ngIf="passengers.errors['required']">NO of passengers is required</small>
+                <small class="text-danger" *ngIf="passengers.errors['pattern']">Enter valid number</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="bookingid">BookingId</label>
+            <input type="text" required #passengers ="ngModel" id="bookingid" name="bookingid" [class.is-invalid]="passengers.invalid && passengers.touched"  pattern=""  class="form-control" ngModel={{Data.bookingid}}><br>
+            <div *ngIf="passengers.errors && (passengers.invalid || passengers.touched)">
+                <small class="text-danger" *ngIf="passengers.errors['required']">BookingId is required</small>
+                <small class="text-danger" *ngIf="passengers.errors['pattern']">Enter valid Id</small>
+            </div>
+        </div>
+        <div class="div">
+            <div id="div1">
+                <button mat-stroked-button [disabled] ="addnew.form.invalid" type="submit">Update</button>
+             </div>
+             <div id="div2">
+                <button mat-stroked-button [disabled] ="addnew.form.invalid" type="submit"><a  routerLink="/viewupdate" routerLinkActive="Active" >Back</a></button>
+             </div>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #elseblock>
+    <h2>
+        {{string}}
+    </h2>
+    
+     <button mat-stroked-button  type="submit"><a  routerLink="/viewupdate" routerLinkActive="Active" >Back</a></button>
+</ng-template>
+

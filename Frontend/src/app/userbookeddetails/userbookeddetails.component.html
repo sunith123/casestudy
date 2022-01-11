@@ -1,0 +1,32 @@
+<div>
+    <mat-toolbar color="primary" class="navbar">
+        <div> 
+           Flight Details
+        </div>
+    </mat-toolbar>
+</div>
+
+<body>
+    <table class="styled-table">
+    <thead>
+        <tr>
+            <th >FlightID</th>
+            <th> Name</th>
+            <th> Username</th>
+            <th> BookingId</th>
+            <th> No of Passengers</th>
+        </tr>
+    </thead>
+        <tr>
+            <td>{{d.flightId}}</td>
+            <td>{{d.name}}</td>
+            <td>{{d.username}}</td>
+            <td>{{d.bookingid}}</td>
+            <td>{{d.noOfPassengers}}</td>
+        </tr>
+
+
+    </table> 
+    <button mat-stroked-button ><a  routerLink="/viewupdate" routerLinkActive="Active" >Back</a></button>
+
+</body>

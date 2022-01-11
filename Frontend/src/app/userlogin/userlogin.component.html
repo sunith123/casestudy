@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+    <div> 
+        Login
+    </div>
+</mat-toolbar>
+<form #login="ngForm" (ngSubmit)="details(login.value)">
+<div class="form-group">
+    <label for="username">Userame</label>
+    <input type="text" required #username ="ngModel" id="username" name="username" [class.is-invalid]="username.invalid && username.touched" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  class="form-control" ngModel><br>
+    <div *ngIf="username.errors && (username.invalid || username.touched)">
+        <small class="text-danger" *ngIf="username.errors['required']">Userame required</small>
+        <small class="text-danger" *ngIf="username.errors['pattern']">Enter valid username</small>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" required #pass ="ngModel" id="password" name="password" [class.is-invalid]="pass.invalid && pass.touched"  pattern=""  class="form-control" ngModel><br>
+    <div *ngIf="pass.errors && (pass.invalid || pass.touched)">
+        <small class="text-danger" *ngIf="pass.errors['required']">Password is required</small>
+        <small class="text-danger" *ngIf="pass.errors['pattern']">Enter valid password</small>
+    </div>
+</div>
+
+<div id="div1">
+    <button mat-stroked-button [disabled] ="login.form.invalid" type="submit">Submit</button>
+ </div>
+</form>

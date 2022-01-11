@@ -1,0 +1,52 @@
+        <body>
+            <div>
+                <mat-toolbar color="primary" class="navbar">
+                    <div> 
+                       Flight Booking  
+                    </div>
+                    <div >
+                        Admin Page
+                    </div>
+            
+                </mat-toolbar>
+            </div>
+ 
+        <div *ngIf =" display; then thenblock; else elseblock"></div>
+        <ng-template #thenblock>
+            <form #auth="ngForm" (ngSubmit)="getAccess(auth.value)" > 
+                
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" required #user ="ngModel" id="username" name="username" [class.is-invalid]="user.invalid && user.touched"  pattern=""  class="form-control" ngModel><br>
+                    <div *ngIf="user.errors && (user.invalid || user.touched)">
+                        <small class="text-danger" *ngIf="user.errors['required']">Username is required</small>
+                        <small class="text-danger" *ngIf="user.errors['pattern']">Enter valid username</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" required #pass ="ngModel" id="password" name="password" [class.is-invalid]="pass.invalid && pass.touched"  pattern=""  class="form-control" ngModel><br>
+                    <div *ngIf="pass.errors && (pass.invalid || pass.touched)">
+                        <small class="text-danger" *ngIf="pass.errors['required']">Password is required</small>
+                        <small class="text-danger" *ngIf="pass.errors['pattern']">Enter valid password</small>
+                    </div>
+                </div>
+
+                <div>
+                    <button mat-stroked-button [disabled] ="auth.form.invalid" type="submit">Submit</button>
+            </div>
+
+            </form>
+        </ng-template>
+        
+        <ng-template #elseblock>
+            <h2>
+                {{stringvalue}}
+            </h2>
+
+        </ng-template>
+
+
+        </body>

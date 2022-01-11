@@ -1,0 +1,31 @@
+<div>
+    <mat-toolbar color="primary" class="navbar">
+        <div> 
+           List of All Flights Avaliable
+        </div>
+    </mat-toolbar>
+</div>
+<body>
+    <table class="styled-table">
+    <thead>
+        <tr>
+            <th >FlightID</th>
+            <th> Departure</th>
+            <th> Destination</th>
+            <th> Date</th>
+            <th> Price</th>
+        </tr>
+    </thead>
+        <tr *ngFor = "let f of flight">
+            <td>{{f.flightId}}</td>
+            <td>{{f.departure}}</td>
+            <td>{{f.destination}}</td>
+            <td>{{f.date}}</td>
+            <td>{{f.price}}</td>
+        </tr>
+
+
+    </table> 
+    <button mat-stroked-button ><a  routerLink="/adminfunc" routerLinkActive="Active" >Back</a></button>
+
+</body>
